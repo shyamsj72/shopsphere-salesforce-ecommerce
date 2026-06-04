@@ -3,10 +3,10 @@
     <div if:true={product} class="detail-container">
         <div class="back-link" onclick={goBack}>&larr; Back to results</div>
         
-        <div class="slds-grid slds-wrap slds-m-top_medium main-grid">
+        <div class="slds-grid slds-wrap slds-gutters slds-m-top_medium main-grid" style="max-width: 1500px; margin: 0 auto;">
             <!-- Left: Image -->
             <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12 image-section slds-grid">
-                <div class="thumbnails slds-col slds-size_2-of-12">
+                <div class="thumbnails slds-col slds-size_2-of-12" style="margin-top: 10px;">
                     <template for:each={thumbnails} for:item="thumb">
                         <img key={thumb.id} src={thumb.url} class={thumb.class} data-url={thumb.url} onclick={handleThumbClick} />
                     </template>

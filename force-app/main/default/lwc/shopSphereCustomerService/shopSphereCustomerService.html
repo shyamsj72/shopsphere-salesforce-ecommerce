@@ -1,0 +1,48 @@
+<template>
+    <div class="cs-container">
+        <div class="cs-header slds-p-around_xx-large slds-text-align_center">
+            <h1 style="font-size: 32px; font-weight: bold; margin-bottom: 20px;">Welcome to ShopSphere Customer Service</h1>
+            <p style="font-size: 18px; margin-bottom: 30px;">What would you like help with today? You can quickly take care of most things here, or connect with us when needed.</p>
+            <div class="search-box">
+                <input type="text" class="slds-input slds-p-around_medium" placeholder="Search our help library (e.g., return a package)" />
+            </div>
+        </div>
+        <div class="cs-grid slds-grid slds-wrap slds-gutters slds-p-around_xx-large">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="cs-card glass-card slds-p-around_large slds-text-align_center" onclick={handleAction}>
+                    <lightning-icon icon-name="utility:delivery" size="large" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">A delivery, order or return</h2>
+                    <p style="color: #565959;">Track packages, edit or cancel orders.</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="cs-card glass-card slds-p-around_large slds-text-align_center" onclick={handleAction}>
+                    <lightning-icon icon-name="utility:favorite" size="large" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">SpherePlus</h2>
+                    <p style="color: #565959;">View benefits and payment settings.</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="cs-card glass-card slds-p-around_large slds-text-align_center" onclick={handleAction}>
+                    <lightning-icon icon-name="utility:moneybag" size="large" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Payment Options</h2>
+                    <p style="color: #565959;">Add or edit payment methods.</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="cs-card glass-card slds-p-around_large slds-text-align_center" onclick={handleAction}>
+                    <lightning-icon icon-name="utility:lock" size="large" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Login & Security</h2>
+                    <p style="color: #565959;">Update password and account info.</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="cs-card glass-card slds-p-around_large slds-text-align_center" onclick={handleAction}>
+                    <lightning-icon icon-name="utility:call" size="large" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Contact Us</h2>
+                    <p style="color: #565959;">Chat with AI or request a phone call.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

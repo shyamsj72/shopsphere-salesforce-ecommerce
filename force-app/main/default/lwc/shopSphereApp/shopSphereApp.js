@@ -36,6 +36,10 @@ export default class ShopSphereApp extends LightningElement {
     get isCart() { return this.currentView === 'cart' && this.customerId; }
     get isCheckout() { return this.currentView === 'checkout' && this.customerId; }
     get isProfile() { return this.currentView === 'profile' && this.customerId; }
+    get isCustomerService() { return this.currentView === 'customerservice' && this.customerId; }
+    get isRegistry() { return this.currentView === 'registry' && this.customerId; }
+    get isGiftCards() { return this.currentView === 'giftcards' && this.customerId; }
+    get isSell() { return this.currentView === 'sell' && this.customerId; }
 
     handleLogin(event) {
         this.customerId = event.detail.customerId;

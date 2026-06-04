@@ -24,10 +24,11 @@ export default class ShopSphereHeader extends LightningElement {
     goProfile() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'profile' } })); }
     goDeals() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'list' } })); }
 
-    handleNotImplemented(event) {
-        const feature = event.target.dataset.name;
-        showToast(this, 'Coming Soon', `The ${feature} portal is currently under development.`, 'info');
-    }
+    goCustomerService() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'customerservice' } })); }
+    goRegistry() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'registry' } })); }
+    goGiftCards() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'giftcards' } })); }
+    goSell() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'sell' } })); }
+    handleNotImplemented() { /* Fallback */ }
 
     handleCategoryChange(event) { this.selectedCategory = event.target.value; }
 

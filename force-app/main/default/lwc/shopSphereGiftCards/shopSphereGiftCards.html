@@ -1,0 +1,49 @@
+<template>
+    <div class="gc-container slds-p-around_xx-large">
+        <h1 style="font-size: 36px; font-weight: bold; margin-bottom: 10px;">ShopSphere Gift Cards</h1>
+        <p style="font-size: 18px; margin-bottom: 30px; color: #565959;">The perfect gift, every time. No fees, no expiration.</p>
+        
+        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_xx-large">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-m-bottom_medium">
+                <div class="gc-card" onclick={handleAction}>
+                    <div class="gc-img-box" style="background: #ff9900;">
+                        <h3 style="color: white; font-size: 24px; font-weight: bold; text-align: center; padding-top: 40px;">Happy Birthday!</h3>
+                    </div>
+                    <p class="slds-m-top_small slds-text-align_center" style="font-weight: bold;">Birthday Gift Cards</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-m-bottom_medium">
+                <div class="gc-card" onclick={handleAction}>
+                    <div class="gc-img-box" style="background: #00a8e1;">
+                        <h3 style="color: white; font-size: 24px; font-weight: bold; text-align: center; padding-top: 40px;">Thank You</h3>
+                    </div>
+                    <p class="slds-m-top_small slds-text-align_center" style="font-weight: bold;">Thank You Cards</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-m-bottom_medium">
+                <div class="gc-card" onclick={handleAction}>
+                    <div class="gc-img-box" style="background: #232f3e;">
+                        <h3 style="color: white; font-size: 24px; font-weight: bold; text-align: center; padding-top: 40px;">Corporate</h3>
+                    </div>
+                    <p class="slds-m-top_small slds-text-align_center" style="font-weight: bold;">Corporate & Bulk</p>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-m-bottom_medium">
+                <div class="gc-card" onclick={handleAction}>
+                    <div class="gc-img-box" style="background: #e77600;">
+                        <h3 style="color: white; font-size: 24px; font-weight: bold; text-align: center; padding-top: 40px;">Custom Amount</h3>
+                    </div>
+                    <p class="slds-m-top_small slds-text-align_center" style="font-weight: bold;">Any Occasion</p>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+        
+        <div class="balance-check slds-m-top_xx-large slds-text-align_center slds-p-around_large" style="background: white; border-radius: 8px; border: 1px solid #ddd; max-width: 600px; margin: 0 auto;">
+            <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Check your Gift Card Balance</h2>
+            <input type="text" class="slds-input slds-m-bottom_medium" placeholder="Enter Gift Card Claim Code" />
+            <button class="amazon-btn btn-primary" onclick={handleAction}>Check Balance</button>
+        </div>
+    </div>
+</template>

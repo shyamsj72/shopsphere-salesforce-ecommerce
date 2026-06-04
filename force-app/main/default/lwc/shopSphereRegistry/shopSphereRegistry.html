@@ -1,0 +1,28 @@
+<template>
+    <div class="reg-container slds-p-around_xx-large slds-text-align_center">
+        <h1 style="font-size: 40px; font-weight: bold; margin-bottom: 20px;">ShopSphere Registry</h1>
+        <p style="font-size: 20px; margin-bottom: 40px; color: #565959;">The ultimate place to manage your Wedding, Baby, or Custom Gift Registries.</p>
+        
+        <div class="reg-actions slds-grid slds-wrap slds-gutters slds-grid_align-center">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="reg-card glass-card slds-p-around_large">
+                    <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Find a Registry</h2>
+                    <input type="text" class="slds-input slds-m-bottom_medium" placeholder="Registrant name" />
+                    <select class="slds-select slds-m-bottom_medium">
+                        <option>Wedding Registry</option>
+                        <option>Baby Registry</option>
+                        <option>Custom Gift List</option>
+                    </select>
+                    <button class="amazon-btn btn-primary" onclick={handleAction} style="width: 100%;">Search</button>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-m-bottom_large">
+                <div class="reg-card glass-card slds-p-around_large" style="background: linear-gradient(135deg, #f0f8ff, #e6f2ff);">
+                    <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Create a Registry</h2>
+                    <p style="margin-bottom: 20px; font-size: 16px; color: #565959;">Start adding items to your personalized registry today and share it with friends and family.</p>
+                    <button class="amazon-btn btn-secondary" onclick={handleAction} style="width: 100%;">Create yours now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,6 @@
+.cs-container { min-height: 80vh; background-color: #f3f3f3; }
+.cs-header { background: #232f3e; color: white; border-bottom: 1px solid #111; }
+.search-box input { border-radius: 8px; border: none; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 80%; max-width: 600px; margin: 0 auto; }
+.cs-card { cursor: pointer; transition: 0.3s; height: 100%; border: 1px solid #ddd; background: white; border-radius: 8px; }
+.cs-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-color: #ffa41c; }
+.cs-card lightning-icon { --sds-c-icon-color-foreground: #007185; }

@@ -1,0 +1,6 @@
+.gc-container { min-height: 80vh; background-color: #fff; }
+.gc-card { cursor: pointer; transition: 0.2s; }
+.gc-card:hover { transform: scale(1.02); }
+.gc-img-box { height: 120px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.amazon-btn { padding: 10px 20px; border-radius: 8px; font-size: 16px; font-weight: bold; border: 1px solid #fcd200; background: #ffd814; cursor: pointer; }
+.amazon-btn:hover { background: #f7ca00; }

@@ -1,0 +1,67 @@
+<template>
+    <div class="app-container slds-is-relative">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+        </template>
+        <c-shop-sphere-header customer-name={customerName} 
+            onnavigate={handleNavigate} 
+            onsearch={handleSearch}
+            cart-count={cartItemCount}>
+        </c-shop-sphere-header>
+    <div if:true={isLoginView}><c-shop-sphere-login onlogin={handleLogin}></c-shop-sphere-login></div>
+        
+        <main class="main-content">
+            <template if:true={isHome}>
+                <c-shop-sphere-home onnavigate={handleNavigate}></c-shop-sphere-home>
+            </template>
+            <template if:true={isProductList}>
+                <c-shop-sphere-product-list 
+                    category-id={currentCategoryId} 
+                    search-term={currentSearchTerm}
+                    onnavigate={handleNavigate}>
+                </c-shop-sphere-product-list>
+            </template>
+            <template if:true={isProductDetail}>
+                <c-shop-sphere-product-detail customer-id={customerId} 
+                    product-id={currentProductId}
+                    onaddtocart={handleAddToCart}
+                    onnavigate={handleNavigate}>
+                </c-shop-sphere-product-detail>
+            </template>
+            <template if:true={isCart}>
+                <c-shop-sphere-cart customer-id={customerId} onnavigate={handleNavigate}></c-shop-sphere-cart>
+            </template>
+            <template if:true={isCheckout}>
+                <c-shop-sphere-checkout customer-id={customerId} onnavigate={handleNavigate}></c-shop-sphere-checkout>
+            </template>
+            <template if:true={isProfile}>
+                <c-shop-sphere-profile customer-id={customerId} onnavigate={handleNavigate}></c-shop-sphere-profile>
+            </template>
+        </main>
+        
+        <footer class="app-footer">
+            <div class="footer-top">Back to top</div>
+            <div class="footer-links slds-grid slds-wrap slds-p-around_large">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-p-bottom_medium">
+                    <h3>Get to Know Us</h3>
+                    <ul><li>About ShopSphere</li><li>Careers</li><li>Press Releases</li></ul>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-p-bottom_medium">
+                    <h3>Make Money with Us</h3>
+                    <ul><li>Sell on ShopSphere</li><li>Protect & Build Your Brand</li><li>Associates Programme</li></ul>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-p-bottom_medium">
+                    <h3>ShopSphere Payment Methods</h3>
+                    <ul><li>ShopSphere Pay</li><li>Credit Card</li><li>Gift Cards</li></ul>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-p-bottom_medium">
+                    <h3>Let Us Help You</h3>
+                    <ul><li>Your Account</li><li>Your Orders</li><li>Returns & Replacements</li><li>Help</li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShopSphere. Demo Application.</p>
+            </div>
+        </footer>
+    </div>
+</template>

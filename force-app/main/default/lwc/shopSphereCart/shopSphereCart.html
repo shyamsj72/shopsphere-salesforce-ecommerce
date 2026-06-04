@@ -1,0 +1,76 @@
+<template>
+    <div class="cart-container slds-p-around_medium slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-4 cart-items-section">
+            <div class="cart-card">
+                <h1 class="cart-title">Shopping Cart</h1>
+                <p class="price-header">Price</p>
+                <hr/>
+                
+                <template if:true={isEmpty}>
+                    <div class="empty-state">
+                        <h2>Your ShopSphere Cart is empty.</h2>
+                        <a href="javascript:void(0);" onclick={goShopping}>Continue shopping</a>
+                    </div>
+                </template>
+                
+                <template for:each={cartItems} for:item="item">
+                    <div key={item.Id} class="cart-item slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-4 slds-medium-size_1-of-6 item-image">
+                            <img src={item.Product__r.Image_URL__c} alt={item.Product__r.Name}/>
+                        </div>
+                        <div class="slds-col slds-size_3-of-4 slds-medium-size_5-of-6 item-details slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-4 item-info">
+                                <h3>{item.Product__r.Name}</h3>
+                                <p class="stock-status">In Stock</p>
+                                <p class="prime-text">prime</p>
+                                
+                                <div class="item-price">
+                                    <lightning-formatted-number value={item.Unit_Price__c} style="currency" currency-code="INR"></lightning-formatted-number>
+                                </div>
+                                <div class="delivery-estimate slds-m-top_x-small" style="color: #007600; font-weight: bold; font-size: 0.9rem;">
+                                    FREE delivery <strong>by Tomorrow, 11 AM</strong>
+                                </div>
+                                
+                                <div class="item-actions slds-m-top_small">
+                                    <select data-id={item.Id} value={item.Quantity__c} onchange={handleQuantityChange}>
+                                        <option value="0">0 (Delete)</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <span class="divider">|</span>
+                                    <a href="javascript:void(0);" data-id={item.Id} onclick={handleDelete}>Delete</a>
+                                    <span class="divider">|</span>
+                                    <a href="javascript:void(0);">Save for later</a>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 item-price slds-text-align_right">
+                                <strong>₹{item.Price__c}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                
+                <template if:false={isEmpty}>
+                    <div class="subtotal slds-text-align_right slds-m-top_medium">
+                        Subtotal ({totalItems} items): <strong>₹{totalAmount}</strong>
+                    </div>
+                </template>
+            </div>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4 checkout-section" if:false={isEmpty}>
+            <div class="cart-card checkout-card">
+                <div class="subtotal">
+                    Subtotal ({totalItems} items): <strong>₹{totalAmount}</strong>
+                </div>
+                <div class="gift-options slds-m-vertical_small">
+                    <input type="checkbox" id="gift"/> <label for="gift">This order contains a gift</label>
+                </div>
+                <button class="btn checkout-btn" onclick={proceedToCheckout}>Proceed to checkout</button>
+            </div>
+        </div>
+    </div>
+</template>

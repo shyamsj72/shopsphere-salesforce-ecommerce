@@ -1,0 +1,204 @@
+.orders-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: "Amazon Ember", Arial, sans-serif;
+    color: #0F1111;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #565959;
+    margin-bottom: 10px;
+}
+.breadcrumb span { color: #c45500; }
+
+.page-title {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.search-orders {
+    display: flex;
+    align-items: center;
+}
+.search-orders input {
+    padding: 6px 10px 6px 30px;
+    border: 1px solid #888C8C;
+    border-radius: 3px 0 0 3px;
+    outline: none;
+    width: 250px;
+    font-size: 14px;
+}
+.search-icon {
+    position: absolute;
+    left: 8px;
+    --sds-c-icon-color-foreground-default: #565959;
+}
+.search-orders button {
+    background: #383938;
+    color: white;
+    border: 1px solid #383938;
+    border-radius: 0 3px 3px 0;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.search-orders button:hover { background: #000; }
+
+.tabs {
+    border-bottom: 1px solid #D5D9D9;
+    margin-top: 15px;
+}
+.tab {
+    display: inline-block;
+    padding: 5px 10px 10px;
+    margin-right: 20px;
+    color: #007185;
+    cursor: pointer;
+}
+.tab:hover { color: #c45500; text-decoration: underline; }
+.tab.active {
+    color: #0F1111;
+    font-weight: 700;
+    border-bottom: 2px solid #e47911;
+}
+
+.order-card {
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.order-header {
+    background: #F0F2F2;
+    padding: 14px 18px;
+    border-bottom: 1px solid #D5D9D9;
+}
+.label {
+    font-size: 12px;
+    color: #565959;
+    text-transform: uppercase;
+}
+.value {
+    font-size: 14px;
+    color: #0F1111;
+}
+.blue-link { color: #007185; cursor: pointer; }
+.blue-link:hover { color: #c45500; text-decoration: underline; }
+.header-links a { color: #007185; font-size: 14px; text-decoration: none; }
+.header-links a:hover { color: #c45500; text-decoration: underline; }
+.divider { margin: 0 8px; color: #D5D9D9; }
+
+.order-body {
+    background: #fff;
+}
+.delivery-status {
+    font-size: 18px;
+    font-weight: 700;
+}
+.item-img-container { width: 90px; }
+.item-img {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+}
+.item-name {
+    font-size: 14px;
+    color: #007185;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+.item-name:hover { color: #c45500; text-decoration: underline; }
+.return-window {
+    font-size: 12px;
+    color: #565959;
+}
+
+.amazon-btn {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
+}
+.btn-primary {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    color: #0F1111;
+}
+.btn-primary:hover { background: #F7CA00; }
+.btn-secondary {
+    background: #fff;
+    border: 1px solid #D5D9D9;
+    color: #0F1111;
+}
+.btn-secondary:hover { background: #F7FAFA; }
+.item-actions { display: flex; gap: 10px; }
+.item-actions .amazon-btn { width: auto; padding: 4px 10px; box-shadow: none; border-radius: 4px; }
+
+/* Tracking Progress */
+.tracking-progress-container {
+    margin: 30px 0;
+    position: relative;
+}
+.progress-bar-bg {
+    background: #D5D9D9;
+    height: 8px;
+    border-radius: 4px;
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    right: 20px;
+    z-index: 1;
+}
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+}
+.progress-steps {
+    position: relative;
+    z-index: 2;
+    padding: 0 10px;
+}
+.step {
+    text-align: center;
+    width: 80px;
+}
+.step-dot {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid #D5D9D9;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
+.step-dot.completed {
+    background: #007600;
+    border-color: #007600;
+}
+.step p {
+    font-size: 12px;
+    color: #565959;
+    font-weight: 500;
+}
+.tracking-details {
+    border-top: 1px solid #D5D9D9;
+    padding-top: 15px;
+}
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+.detail-row .time {
+    width: 100px;
+    color: #565959;
+}
+.detail-row .event {
+    color: #0F1111;
+}

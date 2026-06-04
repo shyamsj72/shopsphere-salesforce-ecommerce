@@ -1,0 +1,31 @@
+
+<template>
+    <div class="card glass-card" onclick={handleClick}>
+        <div class="image-wrapper">
+            <lightning-icon icon-name="utility:favorite" size="x-small" class="wishlist-icon" title="Add to Wishlist"></lightning-icon>
+            <img src={product.Image_URL__c} alt={product.Name} loading="lazy" />
+        </div>
+        <div class="card-content">
+            <h3 class="product-name" title={product.Name}>{product.Name}</h3>
+            
+            <div class="rating-box slds-m-vertical_xx-small">
+                <template for:each={stars} for:item="star">
+                    <lightning-icon key={star} icon-name="utility:favorite" size="xx-small" class={star.class}></lightning-icon>
+                </template>
+                <span class="rating-text">{product.Rating__c}</span>
+            </div>
+
+            <div class="price-row">
+                <span class="price-symbol">₹</span>
+                <span class="price"><lightning-formatted-number value={product.Price__c} maximum-fraction-digits="2"></lightning-formatted-number></span>
+            </div>
+
+            <div if:true={product.Prime_Eligible__c} class="prime-logo slds-m-top_xx-small">
+                <span class="prime-check">✓</span> <span class="prime-text sphere-plus">SpherePlus</span>
+            </div>
+            <div if:false={product.Prime_Eligible__c} class="delivery-text slds-m-top_xx-small">
+                FREE delivery available
+            </div>
+        </div>
+    </div>
+</template>

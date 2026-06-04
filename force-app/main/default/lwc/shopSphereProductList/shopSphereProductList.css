@@ -1,0 +1,74 @@
+.list-container {
+    background-color: white;
+    min-height: 80vh;
+}
+
+.sidebar {
+    border-right: 1px solid #ddd;
+}
+
+.filter-heading {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-list li {
+    padding: 5px 0;
+    cursor: pointer;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.filter-list li:hover {
+    color: var(--link-hover);
+}
+
+.active-filter {
+    font-weight: bold;
+    color: var(--brand-dark);
+}
+
+.results-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.results-header h2 {
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+.sidebar { border-right: 1px solid var(--border-light); padding-right: 20px; }
+.filter-title { font-weight: bold; font-size: 16px; margin-bottom: 20px; }
+.filter-group { margin-bottom: 20px; }
+.filter-group h4 { font-weight: bold; margin-bottom: 8px; }
+.star-filled { --sds-c-icon-color-foreground: #ffa41c; }
+.star-empty { --sds-c-icon-color-foreground: #e7e7e7; }
+.rating-filter { cursor: pointer; display: flex; align-items: center; }
+.rating-filter:hover { text-decoration: underline; }
+.price-links li { cursor: pointer; padding: 4px 0; color: #007185; }
+.price-links li:hover { color: #c45500; text-decoration: underline; }
+.active-view { --sds-c-icon-color-foreground: #007185; cursor: default; }
+.inactive-view { --sds-c-icon-color-foreground: #ccc; cursor: pointer; }
+.inactive-view:hover { --sds-c-icon-color-foreground: #007185; }
+.list-view-container c-shop-sphere-product-card { display: block; max-width: 800px; }
+
+
+.skeleton-card { border: 1px solid #eee; border-radius: 8px; padding: 10px; height: 350px; background: #fff; }
+.skeleton-img { height: 180px; width: 100%; border-radius: 4px; background: #f0f0f0; }
+.skeleton-text { height: 12px; background: #f0f0f0; border-radius: 4px; }
+@keyframes shimmer { 0% { background-position: -468px 0; } 100% { background-position: 468px 0; } }
+.shimmer { background: #f6f7f8; background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%); background-repeat: no-repeat; background-size: 800px 100%; animation-duration: 1s; animation-fill-mode: forwards; animation-iteration-count: infinite; animation-name: shimmer; animation-timing-function: linear; }

@@ -1,0 +1,5 @@
+**/.eslintrc.json
+**/.prettierrc.json
+**/.prettierignore
+**/.vscode
+**/jsconfig.json

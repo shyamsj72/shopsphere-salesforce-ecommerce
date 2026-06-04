@@ -1,0 +1,1 @@
+public class ShopSphereException extends Exception {}

@@ -1,0 +1,72 @@
+<template>
+    <div class="checkout-container slds-p-around_medium">
+        <div class="checkout-header slds-text-align_center slds-m-bottom_large">
+            <h1>Checkout (<strong>{totalItems} items</strong>)</h1>
+        </div>
+        
+        <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-3">
+                <div class="step-card">
+                    <h2>1. Shipping address</h2>
+                    <div class="form-group">
+                        <lightning-textarea label="Full Address" value={address} onchange={handleAddressChange} required></lightning-textarea>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <h2>2. Payment method</h2>
+                    <div class="form-group">
+                        <lightning-combobox 
+                            name="payment"
+                            label="Select Payment Method"
+                            value={paymentMethod}
+                            options={paymentOptions}
+                            onchange={handlePaymentChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <h2>3. Review items and shipping</h2>
+                    <div class="review-items">
+                        <template for:each={cartItems} for:item="item">
+                            <div key={item.Id} class="review-item slds-grid slds-m-bottom_small">
+                                <img src={item.Product__r.Image_URL__c} alt={item.Product__r.Name} class="tiny-img slds-m-right_small"/>
+                                <div>
+                                    <p class="title">{item.Product__r.Name}</p>
+                                    <div class="checkout-item-qty">Qty: {item.Quantity__c}</div>
+                                    <div class="delivery-estimate slds-m-top_xxx-small" style="color: #007600; font-weight: bold; font-size: 0.85rem;">
+                                        Guaranteed delivery: <strong>Tomorrow, 11 AM</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+                <div class="summary-card">
+                    <button class="btn place-order-btn" onclick={handlePlaceOrder} disabled={isLoading}>Place your order</button>
+                    <p class="terms slds-m-top_small slds-text-align_center">By placing your order, you agree to ShopSphere's privacy notice and conditions of use.</p>
+                    <hr/>
+                    <h3>Order Summary</h3>
+                    <div class="summary-line">
+                        <span>Items:</span>
+                        <span>₹{totalAmount}</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping & handling:</span>
+                        <span>₹0.00</span>
+                    </div>
+                    <hr/>
+                    <div class="summary-total">
+                        <span>Order total:</span>
+                        <span>₹{totalAmount}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

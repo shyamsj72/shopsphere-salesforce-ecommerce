@@ -1,0 +1,69 @@
+
+<template>
+    <div class="list-container slds-grid">
+        <!-- Filter Sidebar -->
+        <div class="sidebar slds-col slds-size_1-of-4 slds-p-right_large">
+            <h3 class="filter-title">Filters</h3>
+            
+            <div class="filter-group">
+                <h4>SpherePlus</h4>
+                <lightning-input type="checkbox" label="SpherePlus Eligible" onchange={handleNotImplemented}></lightning-input>
+            </div>
+            
+            <div class="filter-group">
+                <h4>Customer Review</h4>
+                <div class="rating-filter" onclick={handleNotImplemented}>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-empty"></lightning-icon>
+                    <span> & Up</span>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Price</h4>
+                <ul class="price-links">
+                    <li onclick={handleNotImplemented}>Under ₹1,000</li>
+                    <li onclick={handleNotImplemented}>₹1,000 - ₹5,000</li>
+                    <li onclick={handleNotImplemented}>₹5,000 - ₹10,000</li>
+                    <li onclick={handleNotImplemented}>Over ₹10,000</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Results -->
+        <div class="results slds-col slds-size_3-of-4">
+            <div class="results-header slds-grid slds-grid_align-spread">
+                <h2>Results {searchTermText}</h2>
+                <div class="view-toggle">
+                    <lightning-icon icon-name="utility:apps" size="small" class={gridIconClass} onclick={setGrid}></lightning-icon>
+                    <lightning-icon icon-name="utility:list" size="small" class={listIconClass} onclick={setList}></lightning-icon>
+                </div>
+            </div>
+            
+            <div if:true={products} class={containerClass}>
+                <template for:each={products} for:item="prod">
+                    <div key={prod.Id} class={itemClass}>
+                        <c-shop-sphere-product-card product={prod} onproductclick={handleProductClick}></c-shop-sphere-product-card>
+                    </div>
+                </template>
+            </div>
+        
+            <div if:false={products} class="slds-grid slds-wrap">
+                <template for:each={skeletonList} for:item="skel">
+                    <div key={skel} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-4 slds-p-around_x-small">
+                        <div class="skeleton-card">
+                            <div class="skeleton-img shimmer"></div>
+                            <div class="skeleton-text shimmer slds-m-top_small" style="width: 90%;"></div>
+                            <div class="skeleton-text shimmer slds-m-top_xx-small" style="width: 60%;"></div>
+                            <div class="skeleton-text shimmer slds-m-top_small" style="width: 40%; height: 20px;"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+        </div>
+    </div>
+</template>

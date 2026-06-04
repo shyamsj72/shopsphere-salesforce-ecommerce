@@ -1,0 +1,82 @@
+<template>
+    <div class="home-container">
+        <div class="hero-section">
+            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=2000&q=80" alt="Hero Banner" class="hero-image" loading="lazy"/>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Discover the Future of Commerce</h1>
+                <p class="hero-subtitle">Experience enterprise-grade shopping with AI-driven recommendations.</p>
+            </div>
+        </div>
+        
+        <div class="content-wrapper">
+            <!-- Categories Grid -->
+            <div class="category-grid slds-grid slds-wrap">
+                <template for:each={categories} for:item="cat">
+                    <div key={cat.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-around_small">
+                        <div class="category-card glass-card" onclick={handleCategoryClick} data-id={cat.Id}>
+                            <h2>{cat.Name}</h2>
+                            <div class="cat-image-container">
+                                <img src={cat.Banner_Image__c} alt={cat.Name} loading="lazy"/>
+                            </div>
+                            <div class="shop-now">Explore Collection &rarr;</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Agentforce AI Recommendations -->
+            <div class="trending-section ai-section slds-m-top_x-large" if:true={aiRecommendations.length}>
+                <div class="section-header">
+                    <h2><lightning-icon icon-name="utility:einstein" size="small" class="ai-header-icon slds-m-right_small"></lightning-icon> Recommended for You</h2>
+                </div>
+                <div class="trending-carousel slds-grid slds-wrap">
+                    <template for:each={aiRecommendations} for:item="prod">
+                        <div key={prod.Id} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-p-around_x-small">
+                            <c-shop-sphere-product-card product={prod} onproductclick={handleProductClick}></c-shop-sphere-product-card>
+                        </div>
+                    </template>
+                </div>
+
+                <div if:false={trendingProducts} class="trending-carousel slds-grid slds-wrap">
+                    <template for:each={skeletonList} for:item="skel">
+                        <div key={skel} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-p-around_x-small">
+                            <div class="skeleton-card" style="height: 300px; padding: 10px; border: 1px solid #eee; background: white; border-radius: 8px;">
+                                <div class="skeleton-img shimmer" style="height: 150px; background: #f0f0f0; border-radius: 4px;"></div>
+                                <div class="skeleton-text shimmer" style="height: 12px; width: 80%; background: #f0f0f0; margin-top: 10px;"></div>
+                                <div class="skeleton-text shimmer" style="height: 12px; width: 50%; background: #f0f0f0; margin-top: 5px;"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Trending Row -->
+            <div class="trending-section slds-m-top_large">
+                <div class="section-header">
+                    <h2>Trending Deals</h2>
+                    <a href="javascript:void(0);" onclick={viewAll} class="btn-link">View all</a>
+                </div>
+                <div class="trending-carousel slds-grid slds-wrap">
+                    <template for:each={trendingProducts} for:item="prod">
+                        <div key={prod.Id} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-p-around_x-small">
+                            <c-shop-sphere-product-card product={prod} onproductclick={handleProductClick}></c-shop-sphere-product-card>
+                        </div>
+                    </template>
+                </div>
+
+                <div if:false={trendingProducts} class="trending-carousel slds-grid slds-wrap">
+                    <template for:each={skeletonList} for:item="skel">
+                        <div key={skel} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-p-around_x-small">
+                            <div class="skeleton-card" style="height: 300px; padding: 10px; border: 1px solid #eee; background: white; border-radius: 8px;">
+                                <div class="skeleton-img shimmer" style="height: 150px; background: #f0f0f0; border-radius: 4px;"></div>
+                                <div class="skeleton-text shimmer" style="height: 12px; width: 80%; background: #f0f0f0; margin-top: 10px;"></div>
+                                <div class="skeleton-text shimmer" style="height: 12px; width: 50%; background: #f0f0f0; margin-top: 5px;"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

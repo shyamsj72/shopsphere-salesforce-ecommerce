@@ -1,0 +1,61 @@
+<template>
+    <header class="header">
+        <div class="header-top slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <div class="logo-container" onclick={goHome}>
+                <span class="logo-text">ShopSphere</span><span class="logo-domain">.com</span>
+            </div>
+            
+            
+            <div class="nav-item location-item" onclick={handleNotImplemented} data-name="Location">
+                <lightning-icon icon-name="utility:checkin" size="small" variant="inverse"></lightning-icon>
+                <div class="loc-text">
+                    <div class="nav-line-1">Delivering to Mumbai 400001</div>
+                    <div class="nav-line-2">Update location</div>
+                </div>
+            </div>
+
+            <div class="search-bar slds-col slds-m-horizontal_medium slds-is-relative">
+                <div class="search-flex">
+                    <select class="category-select" onchange={handleCategoryChange}>
+                        <option value="">All</option>
+                        <template for:each={categories} for:item="cat">
+                            <option key={cat.Id} value={cat.Id}>{cat.Name}</option>
+                        </template>
+                    </select>
+                    <input type="text" class="search-input" placeholder="Search ShopSphere (AI Powered)" value={searchTerm} onkeyup={handleSearchKeyUp} oninput={handleSearchInput} onblur={handleSearchBlur}/>
+                    <button class="search-button" onclick={executeSearch}>
+                        <lightning-icon icon-name="utility:search" size="x-small" variant="inverse"></lightning-icon>
+                    </button>
+                </div>
+                <!-- AI Search Suggestions Dropdown -->
+                <div class="search-suggestions glass-dropdown" if:true={showSuggestions}>
+                    <ul>
+                        <template for:each={suggestions} for:item="sug">
+                            <li key={sug.id} data-id={sug.id} onmousedown={handleSuggestionClick}>
+                                <lightning-icon icon-name="utility:sparkles" size="xx-small" class="ai-icon slds-m-right_x-small"></lightning-icon>
+                                <strong>{sug.title}</strong> <span class="sug-context">{sug.context}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header-actions slds-grid">
+                <div class="nav-item" onclick={goProfile}><div class="nav-line-1">Hello, {displayName}</div><div class="nav-line-2">Account & Lists</div></div>
+                <div class="nav-item" onclick={goProfile}><div class="nav-line-1">Returns</div><div class="nav-line-2">& Orders</div></div>
+                <div class="nav-item cart-item" onclick={goCart}>
+                    <lightning-icon icon-name="utility:cart" size="medium" variant="inverse"></lightning-icon>
+                    <span class="cart-count">{cartCount}</span><span class="nav-line-2 cart-label">Cart</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom slds-grid slds-grid_vertical-align-center">
+            <div class="nav-link" onclick={goHome}><lightning-icon icon-name="utility:rows" size="x-small" variant="inverse" class="slds-m-right_xx-small"></lightning-icon>All</div>
+            <div class="nav-link" onclick={goDeals}>Today's Deals</div>
+            <div class="nav-link" onclick={handleNotImplemented} data-name="Customer Service">Customer Service</div>
+            <div class="nav-link" onclick={handleNotImplemented} data-name="Registry">Registry</div>
+            <div class="nav-link" onclick={handleNotImplemented} data-name="Gift Cards">Gift Cards</div>
+            <div class="nav-link" onclick={handleNotImplemented} data-name="Sell">Sell</div>
+        </div>
+    </header>
+</template>

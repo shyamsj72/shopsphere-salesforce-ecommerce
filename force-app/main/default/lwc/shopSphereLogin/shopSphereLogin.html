@@ -1,0 +1,39 @@
+
+<template>
+    <div class="login-container">
+        <div class="amazon-logo">
+            <h1 style="font-size: 24px; font-weight: bold; color: #ff9900;">ShopSphere</h1>
+        </div>
+        
+        <div class="login-box glass-card">
+            <h2>{modeTitle}</h2>
+            
+            <div if:true={isRegister} class="input-group">
+                <label>Your name</label>
+                <input type="text" class="slds-input" onchange={handleName} value={name} />
+            </div>
+            
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" class="slds-input" onchange={handleEmail} value={email} />
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" class="slds-input" onchange={handlePassword} value={password} />
+            </div>
+            
+            <button class="btn-primary" onclick={handleSubmit}>Continue</button>
+            
+            <div class="terms-text slds-m-top_small">
+                By continuing, you agree to ShopSphere's Conditions of Use and Privacy Notice.
+            </div>
+        </div>
+        
+        <div class="divider">
+            <h5>{toggleText}</h5>
+        </div>
+        
+        <button class="btn-secondary" onclick={toggleMode}>{toggleBtnText}</button>
+    </div>
+</template>

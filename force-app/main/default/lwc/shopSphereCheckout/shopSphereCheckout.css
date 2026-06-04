@@ -1,0 +1,12 @@
+.checkout-container { max-width: 1000px; margin: 0 auto; }
+.checkout-header h1 { font-size: 28px; }
+.step-card { background: white; border-radius: 4px; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; }
+.step-card h2 { font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.tiny-img { width: 60px; height: 60px; object-fit: contain; }
+.review-item .title { font-weight: bold; }
+.summary-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }
+.btn { width: 100%; border-radius: 8px; padding: 10px; font-size: 14px; cursor: pointer; border: 1px solid; text-align: center; }
+.place-order-btn { background-color: #ffd814; border-color: #fcd200; font-weight: bold; }
+.terms { font-size: 11px; color: var(--text-light); }
+.summary-line { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+.summary-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #b12704; }

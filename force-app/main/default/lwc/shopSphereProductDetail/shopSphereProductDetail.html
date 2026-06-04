@@ -1,0 +1,94 @@
+
+<template>
+    <div if:true={product} class="detail-container">
+        <div class="back-link" onclick={goBack}>&larr; Back to results</div>
+        
+        <div class="slds-grid slds-wrap slds-m-top_medium main-grid">
+            <!-- Left: Image -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12 image-section slds-grid">
+                <div class="thumbnails slds-col slds-size_2-of-12">
+                    <img src={product.Image_URL__c} class="thumbnail-img active-thumb" />
+                    <img src={product.Image_URL__c} class="thumbnail-img" />
+                    <img src={product.Image_URL__c} class="thumbnail-img" />
+                </div>
+                <div class="main-image-container slds-col slds-size_10-of-12">
+                    <img src={product.Image_URL__c} alt={product.Name} class="main-image" />
+                </div>
+            </div>
+            
+            <!-- Middle: Details -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 info-section">
+                <h1 class="product-title">{product.Name}</h1>
+                <div class="brand-link">Brand: {product.Brand__c}</div>
+                
+                <div class="rating-box slds-m-vertical_small">
+                    <template for:each={stars} for:item="star">
+                        <lightning-icon key={star} icon-name="utility:favorite" size="x-small" class={star.class}></lightning-icon>
+                    </template>
+                    <span class="rating-text">{product.Rating__c} out of 5 stars</span>
+                </div>
+                
+                <hr/>
+                <div class="price-block">
+                    <span class="price-symbol">₹</span>
+                    <span class="price-large"><lightning-formatted-number value={product.Price__c} maximum-fraction-digits="2"></lightning-formatted-number></span>
+                </div>
+                <div class="tax-info">Inclusive of all taxes</div>
+                
+                <div class="features-list slds-m-top_medium">
+                    <h3>About this item</h3>
+                    <p>{product.Description__c}</p>
+                </div>
+            </div>
+            
+            <!-- Right: Buy Box -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <div class="buy-box glass-card">
+                    <div class="price-block-small">₹<lightning-formatted-number value={product.Price__c}></lightning-formatted-number></div>
+                    
+                    <div if:true={product.Prime_Eligible__c} class="prime-delivery slds-m-top_small">
+                        <span class="prime-logo"><span class="prime-check">✓</span> <span class="sphere-plus">SpherePlus</span></span>
+                        <div class="delivery-date">FREE delivery <strong>Tomorrow, June 5</strong></div>
+                        <div class="delivery-time">Order within 5 hrs 30 mins</div>
+                    </div>
+                    <div if:false={product.Prime_Eligible__c} class="standard-delivery slds-m-top_small">
+                        FREE delivery <strong>June 7 - 9</strong>
+                    </div>
+                    
+                    <div class="stock-status in-stock slds-m-top_medium">
+                        <span class="pulse-dot"></span> In Stock
+                    </div>
+                    
+                    <div class="qty-selector slds-m-top_small">
+                        <label>Quantity: </label>
+                        <select onchange={handleQtyChange} class="slds-select" style="width: 70px; display: inline-block;">
+                            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-add-cart slds-m-top_medium" onclick={addToCart}>Add to Cart</button>
+                    <button class="btn-buy-now slds-m-top_small" onclick={buyNow}>Buy Now</button>
+                    
+                    <div class="secure-txn slds-m-top_medium">
+                        <lightning-icon icon-name="utility:lock" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                        Secure transaction
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frequently Bought Together Mock -->
+        <div class="fbt-section slds-m-top_xx-large">
+            <h2>Frequently bought together</h2>
+            <div class="fbt-box glass-card slds-grid slds-vertical-align-center">
+                <img src={product.Image_URL__c} class="fbt-img"/>
+                <span class="fbt-plus">+</span>
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&q=80" class="fbt-img"/>
+                <div class="fbt-total slds-m-left_large">
+                    <div>Total price: <strong>₹<lightning-formatted-number value={fbtTotal}></lightning-formatted-number></strong></div>
+                    <button class="btn-add-cart small-btn slds-m-top_small">Add both to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

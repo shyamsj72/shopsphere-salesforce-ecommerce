@@ -1,0 +1,152 @@
+<template>
+    <div class="orders-container slds-p-around_medium">
+        <div class="breadcrumb">Your Account &gt; <span>Your Orders</span></div>
+        <div class="header-section slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <h1 class="page-title">Your Orders</h1>
+            <div class="search-orders slds-is-relative">
+                <lightning-icon icon-name="utility:search" size="x-small" class="search-icon"></lightning-icon>
+                <input type="text" placeholder="Search all orders" />
+                <button>Search Orders</button>
+            </div>
+        </div>
+
+        <div class="tabs slds-m-bottom_medium">
+            <span class={tabClassOrders} data-tab="Orders" onclick={handleTabChange}>Orders</span>
+            <span class={tabClassBuyAgain} data-tab="BuyAgain" onclick={handleTabChange}>Buy Again</span>
+            <span class={tabClassNotShipped} data-tab="NotShipped" onclick={handleTabChange}>Not Yet Shipped</span>
+            <span class={tabClassCancelled} data-tab="Cancelled" onclick={handleTabChange}>Cancelled Orders</span>
+        </div>
+        
+        <template if:true={isOrdersTab}>
+        
+        <template if:true={orders}>
+            <template for:each={processedOrders} for:item="order">
+                <div key={order.Id} class="order-card slds-m-bottom_large">
+                    <div class="order-header slds-grid slds-wrap">
+                        <div class="header-info slds-col slds-size_1-of-4">
+                            <p class="label">ORDER PLACED</p>
+                            <p class="value">{order.formattedDate}</p>
+                        </div>
+                        <div class="header-info slds-col slds-size_1-of-4">
+                            <p class="label">TOTAL</p>
+                            <p class="value"><lightning-formatted-number value={order.Total_Amount__c} style="currency" currency-code="INR"></lightning-formatted-number></p>
+                        </div>
+                        <div class="header-info slds-col slds-size_1-of-4">
+                            <p class="label">SHIP TO</p>
+                            <p class="value blue-link">You <lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon></p>
+                        </div>
+                        <div class="header-right slds-col slds-size_1-of-4 slds-text-align_right">
+                            <p class="label">ORDER # {order.Name}</p>
+                            <div class="header-links">
+                                <a href="javascript:void(0);">View order details</a>
+                                <span class="divider">|</span>
+                                <a href="javascript:void(0);" data-id={order.Id} onclick={downloadInvoice}>Invoice <lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-body slds-p-around_medium">
+                        <h3 class="delivery-status slds-m-bottom_medium">{order.deliveryStatus}</h3>
+                        
+                        <div class="items-grid slds-grid slds-wrap">
+                            <div class="slds-col slds-size_3-of-4">
+                                <template for:each={order.Order_Items__r} for:item="item">
+                                    <div key={item.Id} class="order-item slds-grid slds-m-bottom_medium">
+                                        <div class="item-img-container">
+                                            <img src={item.Product__r.Image_URL__c} alt={item.Product__r.Name} class="item-img" />
+                                        </div>
+                                        <div class="item-details slds-m-left_medium">
+                                            <a href="javascript:void(0);" class="item-name">{item.Product__r.Name}</a>
+                                            <p class="return-window">Return window closed</p>
+                                            <div class="item-actions slds-m-top_small">
+                                                <button class="amazon-btn btn-secondary">Buy it again</button>
+                                                <button class="amazon-btn btn-secondary">View your item</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            
+                            <div class="slds-col slds-size_1-of-4 action-buttons">
+                                <button class="amazon-btn btn-primary slds-m-bottom_small" data-id={order.Id} onclick={openTracking}>Track package</button>
+                                <button class="amazon-btn btn-secondary slds-m-bottom_small" onclick={handleReturn}>Return or replace items</button>
+                                <button class="amazon-btn btn-secondary slds-m-bottom_small" onclick={handleShare}>Share gift receipt</button>
+                                <button class="amazon-btn btn-secondary" onclick={handleReview}>Write a product review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+        
+        <template if:true={noOrders}>
+            <div class="empty-state slds-p-around_large slds-text-align_center">
+                <h2>Looks like you haven't placed any orders yet.</h2>
+                <button class="amazon-btn btn-primary slds-m-top_medium" onclick={goShopping}>Start shopping</button>
+            </div>
+        </template>
+        </template>
+        
+        <template if:false={isOrdersTab}>
+            <div class="empty-state slds-p-around_large slds-text-align_center">
+                <h2>Looks like you haven't placed any orders in {activeTabDisplay} yet.</h2>
+                <button class="amazon-btn btn-primary slds-m-top_medium" onclick={goShopping}>Start shopping</button>
+            </div>
+        </template>
+        
+        <!-- Tracking Modal -->
+        <template if:true={showTrackingModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container" style="max-width: 600px;">
+                    <header class="slds-modal__header" style="background: #f3f3f3; border-bottom: 1px solid #ddd;">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeTracking}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate" style="font-weight: 700;">Track Package</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color: #007600; margin-bottom: 5px;">Arriving {trackingOrder.deliveryStatus}</h3>
+                        <p style="color: #565959; font-size: 0.9rem; margin-bottom: 20px;">Tracking ID: TBA{trackingOrder.Id}</p>
+                        
+                        <div class="tracking-progress-container">
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style={trackingOrder.progressStyle}></div>
+                            </div>
+                            <div class="progress-steps slds-grid slds-grid_align-spread">
+                                <div class="step">
+                                    <div class={trackingOrder.step1Class}></div>
+                                    <p>Ordered</p>
+                                </div>
+                                <div class="step">
+                                    <div class={trackingOrder.step2Class}></div>
+                                    <p>Shipped</p>
+                                </div>
+                                <div class="step">
+                                    <div class={trackingOrder.step3Class}></div>
+                                    <p>Out for delivery</p>
+                                </div>
+                                <div class="step">
+                                    <div class={trackingOrder.step4Class}></div>
+                                    <p>Arriving</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tracking-details slds-m-top_large">
+                            <h4 style="font-weight: bold; margin-bottom: 10px;">Shipment details</h4>
+                            <div class="detail-row">
+                                <p class="time">Today</p>
+                                <p class="event">Package has left the carrier facility.</p>
+                            </div>
+                            <div class="detail-row">
+                                <p class="time">Yesterday</p>
+                                <p class="event">Package arrived at a carrier facility.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>

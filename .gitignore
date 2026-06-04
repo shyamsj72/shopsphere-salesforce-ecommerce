@@ -1,0 +1,5 @@
+.sf/
+.sfdx/
+*.py
+node_modules/
+.env

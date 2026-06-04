@@ -13,7 +13,14 @@ export default class ShopSphereProductDetail extends LightningElement {
 
     @wire(getProductDetails, { productId: '$productId' })
     wiredProd({ data }) {
-        if(data) this.product = data;
+        if(data) {
+            this.product = data;
+            this.selectedImage = null;
+        }
+    }
+
+    handleProductClick(event) {
+        this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'detail', productId: event.detail.productId } }));
     }
 
     get stars() {

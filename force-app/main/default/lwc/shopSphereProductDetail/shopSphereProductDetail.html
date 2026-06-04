@@ -104,7 +104,7 @@
             <div if:true={trendingProducts.data} class="slds-grid slds-wrap slds-gutters_small">
                 <template for:each={trendingProducts.data} for:item="prod">
                     <div key={prod.Id} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-m-bottom_medium">
-                        <c-shop-sphere-product-card product={prod}></c-shop-sphere-product-card>
+                        <c-shop-sphere-product-card product={prod} onproductclick={handleProductClick}></c-shop-sphere-product-card>
                     </div>
                 </template>
             </div>

@@ -1,6 +1,7 @@
 
 import { LightningElement, api, wire } from 'lwc';
 import getProductDetails from '@salesforce/apex/ShopSphereController.getProductDetails';
+import getTrendingProducts from '@salesforce/apex/ShopSphereController.getTrendingProducts';
 import addToCartApex from '@salesforce/apex/ShopSphereCartController.addToCart';
 import { showToast } from 'c/shopSphereUtils';
 
@@ -24,6 +25,28 @@ export default class ShopSphereProductDetail extends LightningElement {
     }
 
     get fbtTotal() { return this.product ? this.product.Price__c + 1299 : 0; }
+
+    @wire(getTrendingProducts) trendingProducts;
+
+    get activeImage() {
+        return this.selectedImage || (this.product ? this.product.Image_URL__c : '');
+    }
+
+    selectedImage = null;
+
+    get thumbnails() {
+        if(!this.product) return [];
+        return [
+            { id: 1, url: this.product.Image_URL__c, class: this.selectedImage == null || this.selectedImage == this.product.Image_URL__c ? 'thumbnail-img active-thumb' : 'thumbnail-img' },
+            { id: 2, url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80', class: this.selectedImage == 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80' ? 'thumbnail-img active-thumb' : 'thumbnail-img' },
+            { id: 3, url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80', class: this.selectedImage == 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80' ? 'thumbnail-img active-thumb' : 'thumbnail-img' }
+        ];
+    }
+
+    handleThumbClick(event) {
+        this.selectedImage = event.target.dataset.url;
+    }
+
 
     goBack() { this.dispatchEvent(new CustomEvent('navigate', { detail: { view: 'home' } })); }
     handleQtyChange(e) { this.quantity = parseInt(e.target.value, 10); }

@@ -76,3 +76,9 @@
 .thumbnail-img { width: 40px; height: 40px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
 .thumbnail-img:hover, .active-thumb { border: 1px solid #e77600; box-shadow: 0 0 3px rgba(231,118,0,0.5); }
 .main-image-container { display: flex; justify-content: center; align-items: center; cursor: crosshair; }
+
+
+/* New Updates */
+.main-image { max-height: 450px !important; object-fit: contain; width: 100%; }
+.review-card { padding-bottom: 20px; border-bottom: 1px solid #e7e7e7; }
+.similar-section .glass-card { height: 350px !important; }

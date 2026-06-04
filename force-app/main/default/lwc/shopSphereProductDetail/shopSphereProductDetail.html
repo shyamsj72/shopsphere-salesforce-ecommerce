@@ -7,12 +7,12 @@
             <!-- Left: Image -->
             <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12 image-section slds-grid">
                 <div class="thumbnails slds-col slds-size_2-of-12">
-                    <img src={product.Image_URL__c} class="thumbnail-img active-thumb" />
-                    <img src={product.Image_URL__c} class="thumbnail-img" />
-                    <img src={product.Image_URL__c} class="thumbnail-img" />
+                    <template for:each={thumbnails} for:item="thumb">
+                        <img key={thumb.id} src={thumb.url} class={thumb.class} data-url={thumb.url} onclick={handleThumbClick} />
+                    </template>
                 </div>
                 <div class="main-image-container slds-col slds-size_10-of-12">
-                    <img src={product.Image_URL__c} alt={product.Name} class="main-image" />
+                    <img src={activeImage} alt={product.Name} class="main-image" />
                 </div>
             </div>
             
@@ -35,10 +35,17 @@
                 </div>
                 <div class="tax-info">Inclusive of all taxes</div>
                 
+                
                 <div class="features-list slds-m-top_medium">
                     <h3>About this item</h3>
-                    <p>{product.Description__c}</p>
+                    <ul class="slds-list_dotted slds-m-top_small" style="font-size: 14px; line-height: 1.5; color: #0f1111;">
+                        <li>High-quality materials ensure durability and long-lasting performance.</li>
+                        <li>Ergonomic design for comfortable daily use.</li>
+                        <li>{product.Description__c}</li>
+                        <li>Backed by SpherePlus 1-year warranty and easy returns.</li>
+                    </ul>
                 </div>
+
             </div>
             
             <!-- Right: Buy Box -->
@@ -90,5 +97,61 @@
                 </div>
             </div>
         </div>
+
+        <!-- Similar Items Carousel -->
+        <div class="similar-section slds-m-top_xx-large slds-m-bottom_x-large">
+            <h2 class="slds-m-bottom_medium" style="font-size: 20px; font-weight: bold;">Similar items you might like</h2>
+            <div if:true={trendingProducts.data} class="slds-grid slds-wrap slds-gutters_small">
+                <template for:each={trendingProducts.data} for:item="prod">
+                    <div key={prod.Id} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-5 slds-m-bottom_medium">
+                        <c-shop-sphere-product-card product={prod}></c-shop-sphere-product-card>
+                    </div>
+                </template>
+            </div>
+            <div if:false={trendingProducts.data} class="slds-text-align_center slds-p-around_medium">
+                Loading similar products...
+            </div>
+        </div>
+
+        <!-- Customer Reviews -->
+        <hr/>
+        <div class="reviews-section slds-m-top_large slds-m-bottom_xx-large">
+            <h2 class="slds-m-bottom_medium" style="font-size: 20px; font-weight: bold;">Top reviews from India</h2>
+            
+            <div class="review-card slds-m-bottom_medium">
+                <div class="reviewer slds-grid slds-grid_vertical-align-center">
+                    <lightning-avatar fallback-icon-name="standard:avatar" size="small" class="slds-m-right_small"></lightning-avatar>
+                    <span><strong>Rahul S.</strong></span>
+                </div>
+                <div class="rating-box slds-m-top_x-small slds-m-bottom_xx-small">
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-empty"></lightning-icon>
+                    <span class="slds-m-left_x-small" style="font-weight: bold;">Great product, totally worth it!</span>
+                </div>
+                <p class="review-date" style="color: #565959; font-size: 13px;">Reviewed in India on 12 May 2024</p>
+                <p class="slds-m-top_small">The quality is amazing and delivery was super fast with SpherePlus. It perfectly matches the description. Highly recommended for anyone looking for this kind of item.</p>
+            </div>
+
+            <div class="review-card slds-m-bottom_medium">
+                <div class="reviewer slds-grid slds-grid_vertical-align-center">
+                    <lightning-avatar fallback-icon-name="standard:avatar" size="small" class="slds-m-right_small"></lightning-avatar>
+                    <span><strong>Priya M.</strong></span>
+                </div>
+                <div class="rating-box slds-m-top_x-small slds-m-bottom_xx-small">
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <lightning-icon icon-name="utility:favorite" size="xx-small" class="star-filled"></lightning-icon>
+                    <span class="slds-m-left_x-small" style="font-weight: bold;">Exceeded expectations</span>
+                </div>
+                <p class="review-date" style="color: #565959; font-size: 13px;">Reviewed in India on 28 April 2024</p>
+                <p class="slds-m-top_small">I was skeptical at first, but this is exactly what I needed. Five stars!</p>
+            </div>
+        </div>
+
     </div>
 </template>
